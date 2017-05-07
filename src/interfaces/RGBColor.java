@@ -3,13 +3,13 @@ package interfaces;
 
 public interface RGBColor extends Color{
     
-    public abstract byte getRed();
-    public abstract void setRed(byte red);
+    public abstract Number getRed();
+    public abstract void setRed(Number red);
     
-    public abstract byte getGreen();
-    public abstract void setGreen(byte color);
+    public abstract Number getGreen();
+    public abstract void setGreen(Number color);
     
-    public abstract byte getBlue();
-    public abstract void setBlue(byte blue);
+    public abstract Number getBlue();
+    public abstract void setBlue(Number blue);
     
 }

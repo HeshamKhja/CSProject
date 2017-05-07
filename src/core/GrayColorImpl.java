@@ -5,13 +5,9 @@ import interfaces.GrayColor;
 
 public class GrayColorImpl implements GrayColor{
     
-    private byte color;
-    private double dColor;
+    private Number color;
     
-    public GrayColorImpl(byte color){
-        setColor(color);
-    }
-    public GrayColorImpl(double color){
+    public GrayColorImpl(Number color){
         setColor(color);
     }
     
@@ -19,19 +15,13 @@ public class GrayColorImpl implements GrayColor{
         this(gp.getColor());
     }
 
-    public byte getColor() {
+    public Number getColor() {
         return color;
     }
     
-    public double getDColor() {
-        return dColor;
-    }
 
-    public void setColor(byte color) {
+    public void setColor(Number color) {
         this.color = color;
-    }
-    public void setColor(double color) {
-        this.dColor = color;
     }
     
     public String toString(){
@@ -42,7 +32,15 @@ public class GrayColorImpl implements GrayColor{
     public int compareTo(Color color) {
         if (color instanceof GrayColor){
             GrayColor gray = (GrayColor)color;
-            return (this.getColor()-gray.getColor());
+            if (gray.getColor() instanceof Integer)
+                return (Integer)(this.getColor())-(Integer)(gray.getColor());
+            else if (gray.getColor() instanceof Double){
+                if((Double)(this.getColor())-(Double)(gray.getColor())>0)
+                    return 1;
+                else if((Double)(this.getColor())-(Double)(gray.getColor())<0)
+                    return -1;
+                return 0;
+            }
         }
         return -9999;        
     }

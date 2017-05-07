@@ -1,76 +1,45 @@
+
 package core;
 
 import interfaces.Color;
 import interfaces.RGBColor;
 
+
 public class RGBColorImpl implements RGBColor{
  
-    public byte Red;
-    public byte Green;
-    public byte Blue;
+    public Number Red;
+    public Number Green;
+    public Number Blue;
     
-    public double dRed;
-    public double dGreen;
-    public double dBlue;
 
-    public RGBColorImpl(byte R, byte G, byte B) {
+    public RGBColorImpl(Number R, Number G, Number B) {
         setBlue(B);
         setGreen(G);
         setRed(R);
     }
     
-    public RGBColorImpl(double R, double G, double B) {
-        setBlue(B);
-        setGreen(G);
-        setRed(R);
-    }
-    
-    public byte getRed() {
+    public Number getRed() {
         return Red;
     }
 
-    public void setRed(byte R) {
+    public void setRed(Number R) {
         this.Red = R;
     }
 
-    public byte getGreen() {
+    public Number getGreen() {
         return Green;
     }
 
-    public void setGreen(byte G) {
+    public void setGreen(Number G) {
         this.Green = G;
     }
 
-    public byte getBlue() {
+    public Number getBlue() {
         return Blue;
     }
 
-    public void setBlue(byte B) {
+    public void setBlue(Number B) {
         this.Blue = B;
-    }
-    
-    public double getDRed() {
-        return dRed;
-    }
-
-    public void setRed(double R) {
-        this.dRed = R;
-    }
-
-    public double getDGreen() {
-        return dGreen;
-    }
-
-    public void setGreen(double G) {
-        this.dGreen = G;
-    }
-
-    public double getDBlue() {
-        return dBlue;
-    }
-
-    public void setBlue(double B) {
-        this.dBlue = B;
     }
     
     public String toString(){
@@ -81,7 +50,18 @@ public class RGBColorImpl implements RGBColor{
     public int compareTo(Color color) {
         if (color instanceof RGBColor){
             RGBColor rgb = (RGBColor)color;
-            return (this.getBlue()+this.getGreen()+this.getRed())-(rgb.getBlue()+rgb.getGreen()+rgb.getRed());
+            if (rgb.getBlue() instanceof Byte)
+                return ((Integer)(this.getBlue())+(Integer)(this.getGreen())+((Integer)this.getRed())) -
+                        ((Integer)(rgb.getBlue())+(Integer)(rgb.getGreen())+(Integer)(rgb.getRed()));
+            else if (rgb.getBlue() instanceof Double){
+                if(((Double)(this.getBlue())+(Double)(this.getGreen())+((Double)this.getRed())) -
+                        ((Double)(rgb.getBlue())+(Double)(rgb.getGreen())+(Double)(rgb.getRed())) > 0)
+                    return 1;
+                else if(((Double)(this.getBlue())+(Double)(this.getGreen())+((Double)this.getRed())) -
+                        ((Double)(rgb.getBlue())+(Double)(rgb.getGreen())+(Double)(rgb.getRed())) < 0)
+                    return -1;
+                return 0;
+            }
         }
         return -9999;
     }

@@ -1,6 +1,6 @@
 package core;
 
-
+import interfaces.GrayImage;
 import interfaces.Pixel;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class GrayImageImpl extends ImageImpl{
+public class GrayImageImpl extends ImageImpl implements GrayImage{
 
     private Pixel [][]  img ;
     
-    private final int maxColor = 255;
+    private final int maxColor = 256;
     
     public GrayImageImpl(int width, int height, String name) {
         super(width, height, name);
@@ -39,7 +39,7 @@ public class GrayImageImpl extends ImageImpl{
         for (int i=0;i<getHeight();i++){
                for (int j=0;j<getWidth();j++){
                    //System.out.println("i: "+i+"j: "+j );
-                   img[i][j]=new GrayPixelImpl(new GrayColorImpl((byte)(Math.random()*maxColor)));
+                   img[i][j] = new GrayPixelImpl(new GrayColorImpl((int)(Math.random()*maxColor)));
                    //img[i][j].setColor((byte)(Math.random()*maxColor));
                }
             }

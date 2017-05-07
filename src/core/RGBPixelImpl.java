@@ -1,6 +1,11 @@
 package core;
 
-import interfaces.*;
+import interfaces.Color;
+import interfaces.Pixel;
+import interfaces.RGBColor;
+
+
+
 
 public class RGBPixelImpl implements Pixel{
     
@@ -13,6 +18,7 @@ public class RGBPixelImpl implements Pixel{
     public RGBPixelImpl(RGBPixelImpl cp) {
         
     }
+    
        
     public String toString(){
         return String.format("(%s)",rgb);
@@ -33,4 +39,5 @@ public class RGBPixelImpl implements Pixel{
     public int compareTo(Pixel pixel) {
         return this.getColor().compareTo(pixel.getColor());
     }
+    
 }

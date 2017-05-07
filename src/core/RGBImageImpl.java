@@ -1,15 +1,16 @@
 package core;
 
 import interfaces.Pixel;
+import interfaces.RGBImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class RGBImageImpl extends ImageImpl {
+public class RGBImageImpl extends ImageImpl implements RGBImage{
     
     private Pixel [][]  img ;
     
-    private final int maxColor = 255;
+    private final int maxColor = 256;
     
     public RGBImageImpl(int width, int height, String name) {
         super(width, height, name);
@@ -36,9 +37,9 @@ public class RGBImageImpl extends ImageImpl {
                for (int j=0;j<getWidth();j++){
                    
                    img[i][j]= new RGBPixelImpl(new RGBColorImpl(
-                           (byte)(Math.random()*maxColor),
-                           (byte)(Math.random()*maxColor), 
-                           (byte)(Math.random()*maxColor)));
+                           (int)(Math.random()*maxColor),
+                           (int)(Math.random()*maxColor), 
+                           (int)(Math.random()*maxColor)));
                }
             }
     }

@@ -1,6 +1,12 @@
 package core;
 
-import interfaces.*;
+import interfaces.Color;
+import interfaces.GrayColor;
+import interfaces.Pixel;
+
+
+
+
 
 public class GrayPixelImpl implements Pixel{
     
