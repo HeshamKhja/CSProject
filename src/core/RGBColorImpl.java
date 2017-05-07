@@ -4,7 +4,6 @@ package core;
 import interfaces.Color;
 import interfaces.RGBColor;
 
-
 public class RGBColorImpl implements RGBColor{
  
     public Number Red;
@@ -18,30 +17,37 @@ public class RGBColorImpl implements RGBColor{
         setRed(R);
     }
     
+    @Override
     public Number getRed() {
         return Red;
     }
 
+    @Override
     public void setRed(Number R) {
         this.Red = R;
     }
 
+    @Override
     public Number getGreen() {
         return Green;
     }
 
+    @Override
     public void setGreen(Number G) {
         this.Green = G;
     }
 
+    @Override
     public Number getBlue() {
         return Blue;
     }
 
+    @Override
     public void setBlue(Number B) {
         this.Blue = B;
     }
     
+    @Override
     public String toString(){
         return String.format("(%d,%d,%d)",Red,Green,Blue);
     }

@@ -1,6 +1,5 @@
 package interfaces;
 
-
 public interface RGBColor extends Color{
     
     public abstract Number getRed();

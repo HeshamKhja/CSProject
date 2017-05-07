@@ -23,6 +23,7 @@ public class RGBImageImpl extends ImageImpl implements RGBImage{
         img = im.getImg();
     }
 
+    @Override
     public Pixel[][] getImg() {
         return img;
     }
@@ -44,6 +45,7 @@ public class RGBImageImpl extends ImageImpl implements RGBImage{
             }
     }
     
+    @Override
     public String toString(){
         return String.format("Color %s",super.toString());
     }

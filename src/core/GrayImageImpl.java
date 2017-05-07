@@ -8,20 +8,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+public class GrayImageImpl extends ImageImpl implements GrayImage {
 
-public class GrayImageImpl extends ImageImpl implements GrayImage{
+    private Pixel[][] img;
 
-    private Pixel [][]  img ;
-    
     private final int maxColor = 256;
-    
+
     public GrayImageImpl(int width, int height, String name) {
         super(width, height, name);
         img = new GrayPixelImpl[height][width];
     }
-    
+
     public GrayImageImpl(GrayImageImpl im) {
-        super(im.getWidth(),im.getHeight(),im.getName());
+        super(im.getWidth(), im.getHeight(), im.getName());
         img = new GrayPixelImpl[im.getHeight()][im.getWidth()];
         img = im.getImg();
     }
@@ -36,26 +35,17 @@ public class GrayImageImpl extends ImageImpl implements GrayImage{
 
     @Override
     public void randomize() {
-        for (int i=0;i<getHeight();i++){
-               for (int j=0;j<getWidth();j++){
-                   //System.out.println("i: "+i+"j: "+j );
-                   img[i][j] = new GrayPixelImpl(new GrayColorImpl((int)(Math.random()*maxColor)));
-                   //img[i][j].setColor((byte)(Math.random()*maxColor));
-               }
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                img[i][j] = new GrayPixelImpl(new GrayColorImpl((int) (Math.random() * maxColor)));
             }
-    }
-    
-   
-    
-    
-    
-    public String toString(){
-        return String.format("Gray %s",super.toString());
+        }
     }
 
-    
-    
-    
+    public String toString() {
+        return String.format("Gray %s", super.toString());
+    }
+
 }
 
 
@@ -108,4 +98,4 @@ public class GrayImageImpl extends ImageImpl implements GrayImage{
             return false;
         }        
     }
-    */
+ */

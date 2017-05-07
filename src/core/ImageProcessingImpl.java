@@ -1,14 +1,8 @@
 package core;
 
-import interfaces.GrayColor;
-import interfaces.GrayImage;
-import interfaces.Image;
-import interfaces.ImageProcessing;
-import interfaces.RGBColor;
-import interfaces.RGBImage;
+import interfaces.*;
 import java.util.Map;
 import java.util.TreeMap;
-
 
 public class ImageProcessingImpl implements ImageProcessing{
     

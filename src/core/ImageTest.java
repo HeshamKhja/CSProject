@@ -1,10 +1,7 @@
 package core;
 
 
-import interfaces.GrayColor;
-import interfaces.Image;
-import interfaces.ImageProcessing;
-import interfaces.RGBColor;
+import interfaces.*;
 import java.util.ArrayList;
 
 

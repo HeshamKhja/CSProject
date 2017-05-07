@@ -14,4 +14,5 @@ public interface Image extends Comparable <Image>{
     public abstract Pixel [][] getImg();
        
     public abstract void randomize();
+    
 }

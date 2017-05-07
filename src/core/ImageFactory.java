@@ -1,12 +1,7 @@
 package core;
 
 import interfaces.Image;
-import core.GrayImageImpl;
 
-/**
- *
- * @author HASAN_Siwi
- */
 public class ImageFactory {
     
     private static ImageFactory instance = null;

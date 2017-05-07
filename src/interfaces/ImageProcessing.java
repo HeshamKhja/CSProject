@@ -2,8 +2,8 @@ package interfaces;
 
 import java.util.*;
 
-
 public interface ImageProcessing {
+    
     public abstract Image thresholding (Image image, int thresholdValue);
     public abstract Image toDouble (Image image);
     public abstract Map<Integer, Integer> Histogram (Image image);

@@ -15,15 +15,17 @@ public class GrayColorImpl implements GrayColor{
         this(gp.getColor());
     }
 
+    @Override
     public Number getColor() {
         return color;
     }
-    
 
+    @Override
     public void setColor(Number color) {
         this.color = color;
     }
     
+    @Override
     public String toString(){
         return String.format("%d",color);
     }
