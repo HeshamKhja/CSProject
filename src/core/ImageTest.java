@@ -10,12 +10,12 @@ public class ImageTest {
         
         ArrayList<Image> images = new ArrayList<Image>();
 
-        images.add(new GrayImageImpl(10, 10, "gimage01.png"));
+        images.add(new GrayImageImpl(25, 20, "gimage01.png"));
         images.add(new GrayImageImpl(40, 60, "gimage02.png"));
         images.add(new GrayImageImpl(50, 70, "gimage03.png"));
         
         images.add(new RGBImageImpl(5, 5, "cimage01.bmp"));
-        images.add(new RGBImageImpl(40, 60, "cimage02.bmp"));
+        images.add(new RGBImageImpl(30, 30, "cimage02.bmp"));
         images.add(new RGBImageImpl(50, 70, "cimage03.bmp"));
         
         for (Image image : images){
@@ -24,22 +24,25 @@ public class ImageTest {
         
         ImageProcessing imp = ImageProcessingImpl.getInstance();
         
-        for (int i = 0; i < images.get(3).getImg().length; i++) {
-            for (int j = 0; j < images.get(3).getImg()[i].length; j++) {
-                System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())));
+        for (int i = 0; i < images.get(3).getHeight(); i++) {
+            for (int j = 0; j < images.get(3).getWidth(); j++) {
+                System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())).getRed() + " "
+                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getGreen() + " "
+                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getBlue() + " \t");
             }
             System.out.println("");
         }
         System.out.println("\n\n");
-        /*
-        Map mp = imp.Histogram(images.get(3));
-        System.out.println(mp);
+        
+        imp.toDouble(images.get(3));
+        
+        System.out.println("");
         
         for (int i = 0; i < images.get(3).getHeight(); i++) {
             for (int j = 0; j < images.get(3).getWidth(); j++) {
                 System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())).getRed() + " "
                                + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getGreen() + " "
-                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getBlue() + " ");
+                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getBlue() + " \t");
             }
             System.out.println("");
         }

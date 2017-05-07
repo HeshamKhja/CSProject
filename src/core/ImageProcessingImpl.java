@@ -90,10 +90,10 @@ public class ImageProcessingImpl implements ImageProcessing{
                                  (int)(((RGBColorImpl)(image.getImg()[i][j].getColor())).getGreen()),
                                  (int)(((RGBColorImpl)(image.getImg()[i][j].getColor())).getBlue())};
                     for (int k = 0; k < tmp.length; k++) {
-                        if (map.containsKey(tmp[i]))
-                        map.put(tmp[i], map.get(tmp[i])+1);
+                        if (map.containsKey(tmp[k]))
+                        map.put(tmp[k], map.get(tmp[k])+1);
                     else
-                        map.put(tmp[i], 1);
+                        map.put(tmp[k], 1);
                     }
                     
                 }
@@ -144,20 +144,17 @@ public class ImageProcessingImpl implements ImageProcessing{
             }
             for (int i = 0; i < subimage.getHeight(); i++) {
                 for (int j = 0; j < subimage.getWidth(); j++) {
-                    subImg = subImg + ((RGBColor)(image.getImg()[i][j].getColor())).getRed()
-                                    + ((RGBColor)(image.getImg()[i][j].getColor())).getGreen()
-                                    + ((RGBColor)(image.getImg()[i][j].getColor())).getBlue();
+                    subImg = subImg + ((RGBColor)(subimage.getImg()[i][j].getColor())).getRed()
+                                    + ((RGBColor)(subimage.getImg()[i][j].getColor())).getGreen()
+                                    + ((RGBColor)(subimage.getImg()[i][j].getColor())).getBlue();
                 }
             }
-            System.out.println(img);
-            System.out.println(subImg);
-
+            
             String[] arr = img.split(" ");
             for (String st : arr) {
                 if (st.equals(subImg))
                     count++;
             }
-            System.out.println(count);
         }
         return count;
     }
