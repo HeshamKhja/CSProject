@@ -8,9 +8,9 @@ public class RGBPixelImpl implements Pixel{
     
     public RGBColor rgb;
 
-
     public RGBPixelImpl(RGBColor rgb) {
-        
+        super();
+        setColor(rgb);
     }
     public RGBPixelImpl(RGBPixelImpl cp) {
         
@@ -18,7 +18,7 @@ public class RGBPixelImpl implements Pixel{
        
     @Override
     public String toString(){
-        return String.format("(%s)",rgb);
+        return String.format("(%d)",rgb);
     }
 
     @Override

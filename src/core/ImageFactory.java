@@ -18,9 +18,9 @@ public class ImageFactory {
     }
     
     public Image getImage(String type, int width, int height, String name ){
-        if(type.compareToIgnoreCase("gray") == 0)
+        if(type.equalsIgnoreCase("gray"))
             return new GrayImageImpl(width, height, name);
-        else if(type.compareToIgnoreCase("rgb") == 0)
+        else if(type.equalsIgnoreCase("rgb"))
             return new RGBImageImpl(width, height, name);
         return null;
     }

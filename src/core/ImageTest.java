@@ -1,9 +1,8 @@
 package core;
 
-
 import interfaces.*;
 import java.util.ArrayList;
-
+import java.util.Map;
 
 public class ImageTest {
     
@@ -11,45 +10,36 @@ public class ImageTest {
         
         ArrayList<Image> images = new ArrayList<Image>();
 
-        images.add(new GrayImageImpl(25, 30, "gimage01.png"));
-        images.add(new GrayImageImpl(5, 5, "gimage02.png"));
+        images.add(new GrayImageImpl(10, 10, "gimage01.png"));
+        images.add(new GrayImageImpl(40, 60, "gimage02.png"));
         images.add(new GrayImageImpl(50, 70, "gimage03.png"));
         
-        images.add(new RGBImageImpl(25, 30, "cimage01.bmp"));
+        images.add(new RGBImageImpl(5, 5, "cimage01.bmp"));
         images.add(new RGBImageImpl(40, 60, "cimage02.bmp"));
         images.add(new RGBImageImpl(50, 70, "cimage03.bmp"));
         
-        int grayImageCount=0;
-        int rgbImageCount=0;
-        
         for (Image image : images){
             image.randomize();
-            if (image instanceof GrayImageImpl){
-                grayImageCount++;
-            }else if (image instanceof RGBImageImpl){
-                rgbImageCount++;
-            }
         }
-        
-        System.out.println("rgbImageCount " + rgbImageCount);
-        System.out.println("grayImageCount " + grayImageCount);
         
         ImageProcessing imp = ImageProcessingImpl.getInstance();
         
-        for (int i = 0; i < images.get(0).getHeight(); i++) {
-            for (int j = 0; j < images.get(0).getWidth(); j++) {
-                System.out.print(((GrayColor)(images.get(0).getImg()[i][j].getColor())).getColor() + " ");
+        for (int i = 0; i < images.get(3).getImg().length; i++) {
+            for (int j = 0; j < images.get(3).getImg()[i].length; j++) {
+                System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())));
             }
             System.out.println("");
         }
         System.out.println("\n\n");
+        /*
+        Map mp = imp.Histogram(images.get(3));
+        System.out.println(mp);
         
-        int count = imp.MatchPattern(images.get(1), images.get(0));
-        System.out.println("count: " + count);
-        
-        for (int i = 0; i < images.get(1).getHeight(); i++) {
-            for (int j = 0; j < images.get(1).getWidth(); j++) {
-                System.out.print(((GrayColor)(images.get(1).getImg()[i][j].getColor())).getColor() + " ");
+        for (int i = 0; i < images.get(3).getHeight(); i++) {
+            for (int j = 0; j < images.get(3).getWidth(); j++) {
+                System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())).getRed() + " "
+                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getGreen() + " "
+                               + ((RGBColor)(images.get(3).getImg()[i][j].getColor())).getBlue() + " ");
             }
             System.out.println("");
         }
