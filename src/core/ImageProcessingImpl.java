@@ -164,6 +164,7 @@ public class ImageProcessingImpl implements ImageProcessing {
         return count;
     }
 
+    @Override
     public boolean imwrite(Image image, String filename) {
         if (image instanceof GrayImage) {
             try {

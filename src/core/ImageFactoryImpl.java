@@ -1,23 +1,25 @@
 package core;
 
 import interfaces.Image;
+import interfaces.ImageFactory;
 import interfaces.ImageProcessing;
 
-public class ImageFactory {
+public class ImageFactoryImpl implements ImageFactory{
     
-    private static ImageFactory instance = null;
+    private static ImageFactoryImpl instance = null;
     
-    private ImageFactory(){
+    private ImageFactoryImpl(){
         
     }
     
-    public static ImageFactory getInstance(){
+    public static ImageFactoryImpl getInstance(){
         if (instance == null){
-             instance = new ImageFactory();
+             instance = new ImageFactoryImpl();
         }
         return instance;
     }
     
+    @Override
     public Image getImage(String type, int width, int height, String name ){
         if(type.equalsIgnoreCase("gray"))
             return new GrayImageImpl(width, height, name);
@@ -26,6 +28,7 @@ public class ImageFactory {
         return null;
     }
     
+    @Override
     public ImageProcessing getImageProcessing() {
         return ImageProcessingImpl.getInstance();
     }

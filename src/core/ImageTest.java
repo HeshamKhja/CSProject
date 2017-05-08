@@ -22,6 +22,10 @@ public class ImageTest {
             image.randomize();
         }
         
+        ImageFactoryImpl imf = ImageFactoryImpl.getInstance();
+        
+        images.get(0);
+        
         ImageProcessing imp = ImageProcessingImpl.getInstance();
         
         for (int i = 0; i < images.get(3).getHeight(); i++) {
