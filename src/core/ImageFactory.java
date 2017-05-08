@@ -1,6 +1,7 @@
 package core;
 
 import interfaces.Image;
+import interfaces.ImageProcessing;
 
 public class ImageFactory {
     
@@ -23,5 +24,9 @@ public class ImageFactory {
         else if(type.equalsIgnoreCase("rgb"))
             return new RGBImageImpl(width, height, name);
         return null;
+    }
+    
+    public ImageProcessing getImageProcessing() {
+        return ImageProcessingImpl.getInstance();
     }
 }

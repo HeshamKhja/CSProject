@@ -12,8 +12,9 @@ public class RGBPixelImpl implements Pixel{
         super();
         setColor(rgb);
     }
+    
     public RGBPixelImpl(RGBPixelImpl cp) {
-        
+        this((RGBColor)(cp.getColor()));
     }
        
     @Override

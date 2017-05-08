@@ -2,11 +2,6 @@ package core;
 
 import interfaces.GrayImage;
 import interfaces.Pixel;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 public class GrayImageImpl extends ImageImpl implements GrayImage {
 
@@ -25,6 +20,7 @@ public class GrayImageImpl extends ImageImpl implements GrayImage {
         img = im.getImg();
     }
 
+    @Override
     public Pixel[][] getImg() {
         return img;
     }
@@ -42,60 +38,9 @@ public class GrayImageImpl extends ImageImpl implements GrayImage {
         }
     }
 
+    @Override
     public String toString() {
         return String.format("Gray %s", super.toString());
     }
-
-}
-
-
-/*
-    public boolean imread(String filename){
-        try {
-            Scanner reader = new Scanner(new File(filename));
-            String type = reader.nextLine();
-            reader.nextLine();
-            String size = reader.nextLine();
-            setWidth(Integer.parseInt(size.split(" ")[0]));
-            setHeight(Integer.parseInt(size.split(" ")[0]));
-            reader.nextLine();
-            setName(filename);
-            int i=0;
-            while (reader.hasNextLine()){
-                String line = reader.nextLine();
-                String [] colors = line.split(" ");
-                for (int j=0;j<getWidth();j++){
-                    img[i][j].setColor(Byte.parseByte(colors[i]));
-                }
-                i++;
-            }
-            return true;
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println("Image file not found");
-            return false;
-        }        
-    }
     
-    public boolean imwrite(String filename) {
-        try {
-            FileWriter fw = new FileWriter(new File(filename));
-            fw.write("P2\n");
-            fw.write("#Converted from MAP format\n");
-            fw.write(String.format("%d %d\n", getWidth(), getHeight()));
-            fw.write(maxColor+"\n");
-            
-            for (int i=0;i<getHeight();i++){
-               for (int j=0;j<getWidth();j++){
-                   fw.write(img[i][j].getColor()+" ");
-               }
-               fw.write("\n");
-            }
-            fw.close();
-            return true;
-        } catch (IOException ex) {
-            System.out.println("Image IO Exception");
-            return false;
-        }        
-    }
- */
+}

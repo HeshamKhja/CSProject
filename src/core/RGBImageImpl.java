@@ -2,9 +2,6 @@ package core;
 
 import interfaces.Pixel;
 import interfaces.RGBImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class RGBImageImpl extends ImageImpl implements RGBImage {
 
@@ -48,30 +45,5 @@ public class RGBImageImpl extends ImageImpl implements RGBImage {
     public String toString() {
         return String.format("Color %s", super.toString());
     }
-    /*
-    public boolean imwrite(String filename) {
-        try {
-            FileWriter fw = new FileWriter(new File(filename));
-
-            
-            for (int i=0;i<getHeight();i++){
-               for (int j=0;j<getWidth();j++){
-                   byte R= img[i][j].getRed();
-                   byte G= img[i][j].getGreen();
-                   byte B= img[i][j].getBlue();
-                   String color = String.format("%s%s%s", Integer.toHexString(R),
-                           Integer.toHexString(G),Integer.toHexString(B));
-                   fw.write(color+" ");
-               }
-               fw.write("\n");
-            }
-            fw.close();
-            return true;
-        } catch (IOException ex) {
-            System.out.println("Image IO Exception");
-            return false;
-        }        
-    }
-     */
-
+    
 }
