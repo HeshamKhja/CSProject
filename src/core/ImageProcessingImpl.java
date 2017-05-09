@@ -30,11 +30,11 @@ public class ImageProcessingImpl implements ImageProcessing {
             for (int i = 0; i < image.getHeight(); i++) {
                 for (int j = 0; j < image.getWidth(); j++) {
                     if ((int) (((GrayColor) (image.getImg()[i][j].getColor())).getColor()) <= thresholdValue) {
-                        ((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)0);
-                        //image.getImg()[i][j].setColor(new GrayColorImpl(0));
+                        //((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)0);
+                        image.getImg()[i][j].setColor(new GrayColorImpl(0));
                     } else if ((int) (((GrayColor) (image.getImg()[i][j].getColor())).getColor()) > thresholdValue) {
-                        ((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)255);
-                        //image.getImg()[i][j].setColor(new GrayColorImpl(255));
+                        //((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)255);
+                        image.getImg()[i][j].setColor(new GrayColorImpl(255));
                     }
                 }
             }
@@ -198,7 +198,8 @@ public class ImageProcessingImpl implements ImageProcessing {
                         Number r = ((RGBColorImpl) image.getImg()[i][j].getColor()).getRed();
                         Number g = ((RGBColorImpl) image.getImg()[i][j].getColor()).getGreen();
                         Number b = ((RGBColorImpl)  image.getImg()[i][j].getColor()).getBlue();
-                        fw.write(r + " " + g + " " + b + " ");
+                        //fw.write(r + " " + g + " " + b + " ");
+                        fw.write(String.format("%d %d %d\n", r, g, b));
                     }
                     fw.write("\n");
                 }
