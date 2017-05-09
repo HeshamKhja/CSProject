@@ -213,6 +213,7 @@ public class ImageProcessingImpl implements ImageProcessing {
         }
     }
     
+    @Override
     public Image imread(String filename) {
         Image image = null;
         try {
