@@ -2,9 +2,11 @@ package core;
 
 import interfaces.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class ImageProcessingImpl implements ImageProcessing {
@@ -28,11 +30,11 @@ public class ImageProcessingImpl implements ImageProcessing {
             for (int i = 0; i < image.getHeight(); i++) {
                 for (int j = 0; j < image.getWidth(); j++) {
                     if ((int) (((GrayColor) (image.getImg()[i][j].getColor())).getColor()) <= thresholdValue) {
-                        //((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)0);
-                        image.getImg()[i][j].setColor(new GrayColorImpl(0));
+                        ((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)0);
+                        //image.getImg()[i][j].setColor(new GrayColorImpl(0));
                     } else if ((int) (((GrayColor) (image.getImg()[i][j].getColor())).getColor()) > thresholdValue) {
-                        //((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)255);
-                        image.getImg()[i][j].setColor(new GrayColorImpl(255));
+                        ((GrayColor)(image.getImg()[i][j].getColor())).setColor((int)255);
+                        //image.getImg()[i][j].setColor(new GrayColorImpl(255));
                     }
                 }
             }
@@ -196,7 +198,7 @@ public class ImageProcessingImpl implements ImageProcessing {
                         Number r = ((RGBColorImpl) image.getImg()[i][j].getColor()).getRed();
                         Number g = ((RGBColorImpl) image.getImg()[i][j].getColor()).getGreen();
                         Number b = ((RGBColorImpl)  image.getImg()[i][j].getColor()).getBlue();
-                        fw.write(String.format("%d %d %d\n", r, g, b));
+                        fw.write(r + " " + g + " " + b + " ");
                     }
                     fw.write("\n");
                 }
@@ -209,6 +211,53 @@ public class ImageProcessingImpl implements ImageProcessing {
         } else {
             return false;
         }
+    }
+    
+    public Image imread(String filename) {
+        Image image = null;
+        try {
+            Scanner reader = new Scanner(new File(filename));
+            String type = reader.nextLine();
+            if (type.equalsIgnoreCase("gray")) {
+                reader.nextLine();
+                String size = reader.nextLine();
+                int width = Integer.parseInt(size.split(" ")[0]);
+                int height = Integer.parseInt(size.split(" ")[1]);
+                reader.nextLine();
+                image = new GrayImageImpl(width, height, filename);
+                int i = 0;
+                while (reader.hasNextLine()) {
+                    String line = reader.nextLine();
+                    String[] colors = line.split(" ");
+                    for (int j = 0; j < image.getWidth(); j++) {
+                        ((GrayColor) (image.getImg()[i][j].getColor())).setColor(Integer.getInteger(colors[j]));
+                    }
+                    i++;
+                }
+            } else if (type.equalsIgnoreCase("rgb")) {
+                reader.nextLine();
+                String size = reader.nextLine();
+                int width = Integer.parseInt(size.split(" ")[0]);
+                int height = Integer.parseInt(size.split(" ")[1]);
+                reader.nextLine();
+                image = new RGBImageImpl(width, height, filename);
+                int i = 0;
+                while (reader.hasNextLine()) {
+                    String line = reader.nextLine();
+                    String[] colors = line.split(" ");
+                    for (int j = 0; j < image.getWidth(); j++) {
+                        ((RGBColor) (image.getImg()[i][j].getColor())).setRed(Integer.getInteger(colors[0]));
+                        ((RGBColor) (image.getImg()[i][j].getColor())).setGreen(Integer.getInteger(colors[1]));
+                        ((RGBColor) (image.getImg()[i][j].getColor())).setBlue(Integer.getInteger(colors[2]));
+                    }
+                    i++;
+                    reader.nextLine();
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Image file not found");
+        }
+        return image;
     }
 
 }

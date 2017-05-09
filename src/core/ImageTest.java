@@ -10,24 +10,29 @@ public class ImageTest {
         
         ArrayList<Image> images = new ArrayList<Image>();
 
-        images.add(new GrayImageImpl(25, 20, "gimage01.png"));
-        images.add(new GrayImageImpl(40, 60, "gimage02.png"));
-        images.add(new GrayImageImpl(50, 70, "gimage03.png"));
+        images.add(new GrayImageImpl(25, 30, "gimage01.pgm"));
+        images.add(new GrayImageImpl(40, 60, "gimage02.pgm"));
+        images.add(new GrayImageImpl(50, 70, "gimage03.pgm"));
         
-        images.add(new RGBImageImpl(5, 5, "cimage01.bmp"));
-        images.add(new RGBImageImpl(30, 30, "cimage02.bmp"));
-        images.add(new RGBImageImpl(50, 70, "cimage03.bmp"));
+        images.add(new RGBImageImpl(25, 30, "cimage01.pgm"));
+        images.add(new RGBImageImpl(40, 60, "cimage02.pgm"));
+        images.add(new RGBImageImpl(50, 70, "cimage03.pgm"));
         
         for (Image image : images){
             image.randomize();
         }
         
-        ImageFactoryImpl imf = ImageFactoryImpl.getInstance();
+        ImageFactory imf = ImageFactoryImpl.getInstance();
+        ImageProcessing imp = imf.getImageProcessing();
         
-        images.get(0);
+        for (int i = 0; i < images.get(0).getHeight(); i++) {
+            for (int j = 0; j < images.get(0).getWidth(); j++) {
+                System.out.print(((GrayColor)(images.get(0).getImg()[i][j].getColor())).getColor()+ "\t");
+            }
+            System.out.println("");
+        }
         
-        ImageProcessing imp = ImageProcessingImpl.getInstance();
-        
+        /*
         for (int i = 0; i < images.get(3).getHeight(); i++) {
             for (int j = 0; j < images.get(3).getWidth(); j++) {
                 System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())).getRed() + " "
@@ -37,11 +42,18 @@ public class ImageTest {
             System.out.println("");
         }
         System.out.println("\n\n");
+        */
+        imp.thresholding(images.get(0), 110);
         
-        imp.toDouble(images.get(3));
+        System.out.println("\n\n");
         
-        System.out.println("");
-        
+        for (int i = 0; i < images.get(0).getHeight(); i++) {
+            for (int j = 0; j < images.get(0).getWidth(); j++) {
+                System.out.print(((GrayColor)(images.get(0).getImg()[i][j].getColor())).getColor()+ "\t");
+            }
+            System.out.println("");
+        }
+        /*
         for (int i = 0; i < images.get(3).getHeight(); i++) {
             for (int j = 0; j < images.get(3).getWidth(); j++) {
                 System.out.print(((RGBColor)(images.get(3).getImg()[i][j].getColor())).getRed() + " "
