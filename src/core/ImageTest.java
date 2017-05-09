@@ -81,7 +81,15 @@ public class ImageTest {
         GrayPixelImpl[][] subPiIm = {{new GrayPixelImpl(new GrayColorImpl(4)), new GrayPixelImpl(new GrayColorImpl(2))},
                                      {new GrayPixelImpl(new GrayColorImpl(3)), new GrayPixelImpl(new GrayColorImpl(1))}};
         ((GrayImageImpl)(subImage)).setImg(subPiIm);
-        //count should be 3
+        /*
+        Image:                  subImage:
+        4 2 0 8                 4 2
+        3 1 4 2                 3 1
+        6 4 3 1
+        9 4 2 7
+        3 3 1 5
+        count should be 3
+        */
         System.out.println("count: " + imp.MatchPattern(subImage, mainImage));
             // RGB:
         //It works too, but it will take 2 days to finish a code to test it
