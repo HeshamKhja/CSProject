@@ -52,10 +52,6 @@ public class ImageProcessingImpl implements ImageProcessing {
                     double d = ((int) (((GrayColor) (image.getImg()[i][j].getColor())).getColor())) / 255.0;
                     //((GrayColor)(image.getImg()[i][j].getColor())).setColor(d);
                     image.getImg()[i][j] = new GrayPixelImpl(new GrayColorImpl(d));
-                    //double d = (double)(((GrayColor)(image.getImg()[i][j].getColor())).getColor())/255.0;
-                    //System.out.println("d" +d);
-                    //((GrayColor)(image.getImg()[i][j].getColor())).setColor(d);
-                    //((GrayColorImpl)(image.getImg()[i][j].getColor())).setColor(((GrayColorImpl)(image.getImg()[i][j].getColor())).getColor()/255.0);
                 }
             }
         } else if (image instanceof RGBImage) {
@@ -113,8 +109,10 @@ public class ImageProcessingImpl implements ImageProcessing {
         String img = "";
         String subImg = "";
         if (image instanceof GrayImage) {
-            for (int i = 0; i < image.getHeight() - subimage.getHeight() + 1; i++) {
-                for (int j = 0; j < image.getWidth() - subimage.getWidth() + 1; j++) {
+            for (int i = 0; i <= image.getHeight() - subimage.getHeight(); i++) {
+                for (int j = 0; j <= image.getWidth() - subimage.getWidth(); j++) {
+                    if (subimage.getImg()[0][0].getColor().compareTo(image.getImg()[i][j].getColor()) != 0)
+                        continue;
                     for (int k = i; k < subimage.getHeight() + i; k++) {
                         for (int l = j; l < subimage.getWidth() + j; l++) {
                             img = img + ((GrayColor) (image.getImg()[k][l].getColor())).getColor();
@@ -128,7 +126,7 @@ public class ImageProcessingImpl implements ImageProcessing {
                     subImg = subImg + ((GrayColor) (subimage.getImg()[i][j].getColor())).getColor();
                 }
             }
-
+            System.out.println("\n" + img + "\n" + subImg);
             String[] arr = img.split(" ");
             for (String st : arr) {
                 if (st.equals(subImg)) {
@@ -136,8 +134,10 @@ public class ImageProcessingImpl implements ImageProcessing {
                 }
             }
         } else if (image instanceof RGBImage) {
-            for (int i = 0; i < image.getHeight() - subimage.getHeight() + 1; i++) {
-                for (int j = 0; j < image.getWidth() - subimage.getWidth() + 1; j++) {
+            for (int i = 0; i <= image.getHeight() - subimage.getHeight(); i++) {
+                for (int j = 0; j <= image.getWidth() - subimage.getWidth(); j++) {
+                    if (subimage.getImg()[0][0].getColor().compareTo(image.getImg()[i][j].getColor()) != 0)
+                        continue;
                     for (int k = i; k < subimage.getHeight() + i; k++) {
                         for (int l = j; l < subimage.getWidth() + j; l++) {
                             img = img + ((RGBColor) (image.getImg()[k][l].getColor())).getRed()
